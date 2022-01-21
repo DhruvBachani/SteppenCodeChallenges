@@ -1,0 +1,29 @@
+
+.item-row{
+    min-height: 64px;
+}
+
+.item-row:hover{
+    outline: 2px solid pink;
+}
+
+
+.columns{
+    align-items: center;
+    margin: 0;
+    padding: 0 10px;
+  }
+
+  .columns:last-child{
+    margin: 0;
+    
+  }
+  
+  .column{
+    word-wrap: break-word;
+    padding:0;
+  }
+
+  .input{
+    padding: 0 10px;
+  }

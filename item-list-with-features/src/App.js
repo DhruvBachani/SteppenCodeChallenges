@@ -1,6 +1,5 @@
 import { ItemList } from "./ItemList.jsx"
 
-import "bulma/css/bulma.min.css"
 
 function App() {
   return (
