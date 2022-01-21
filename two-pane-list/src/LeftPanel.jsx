@@ -7,8 +7,8 @@ const LeftPanel = ({titles, getSelected}) => {
     const[selectedTitle, setSelectedTitle] = useState(null)
 
   return <div  className='column is-one-quarter'>
-      {titles.map((title)=>{
-          return <p onClick={(e)=>{setSelectedTitle(title);getSelected(title)}} className={"panel-block"+(selectedTitle===title? " is-active":"") }>{title}</p>})}
+      {titles.map((title, i)=>{
+          return <p key={i} onClick={(e)=>{setSelectedTitle(title);getSelected(title)}} className={"panel-block"+(selectedTitle===title? " is-active":"") }>{title}</p>})}
       </div>;
 };
 
