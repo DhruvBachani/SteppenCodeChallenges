@@ -10,13 +10,14 @@
         //
         const getMovieList = async(year) => {
             return new Promise(async function(resolve, reject) {
-                titles = []
-                movies = await fetch('https://jsonmock.hackerrank.com/api/movies').then(response => response.json())
-                for (movie in movies.data) {
-                    if (movie.Year === year) titles.push(movie.Title)
-                }
-
-                resolve(titles)
+                const titles = []
+                movies = await fetch('https://jsonmock.hackerrank.com/api/movies?Year=' + year).then(response => response.json())
+                if(movies.page == 1){
+                    movies.data.forEach((movie)=>{
+                        titles.push(movie.Title)
+                    })
+                }                
+                resolve(titles.sort())
             });
         }
     </script>
@@ -27,7 +28,6 @@
         <div class="box">
             <h1 class="title">Movie Titles List</h1>
             <p>Open this file and implement the function <code>getMovieList()</code>.</p>
-            <p><strong>!!!! The given API is broken. !!!!</strong></p>
         </div>
 
         <h3 class="title is-4">API</h3>
