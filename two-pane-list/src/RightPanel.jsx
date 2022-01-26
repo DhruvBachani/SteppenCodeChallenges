@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RightPanel = ({data}) => {
-  return <div className='column is-three-quarters'>
+  return <div className='column is-three-quarters content'>
       {data && <h1 className='title is-4'>{data.title}</h1>}
       <br/>
       {data && data.content.map((str, i) => {

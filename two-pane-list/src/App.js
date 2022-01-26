@@ -103,6 +103,7 @@ function App() {
             "Vaxis – Act I: The Unheavenly Creatures (often shortened to The Unheavenly Creatures) is the ninth studio album by progressive rock band Coheed and Cambria. It was released on October 5, 2018, continuing the band's Amory Wars concept.",
           ],
         },
+        
       ]} />
     </section>
   )
