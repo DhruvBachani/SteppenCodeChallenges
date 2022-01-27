@@ -8,17 +8,13 @@
         //
         // TODO: Implement this function.
         //
-        const getMovieList = async(year) => {
-            return new Promise(async function(resolve, reject) {
-                const titles = []
-                movies = await fetch('https://jsonmock.hackerrank.com/api/movies?Year=' + year).then(response => response.json())
-                if(movies.page == 1){
-                    movies.data.forEach((movie)=>{
-                        titles.push(movie.Title)
-                    })
-                }                
-                resolve(titles.sort())
-            });
+        const getMovieList = async (year) => {
+            const titles = []
+            const movies = await fetch('https://jsonmock.hackerrank.com/api/movies?Year=' + year).then(response => response.json())
+            if (movies.page == 1) {
+                movies.data.map((movie) => titles.push(movie.Title))
+            }
+            return(titles.sort())
         }
     </script>
 </head>
@@ -55,17 +51,17 @@
         <h3 class="title is-4">Task</h3>
         <div class="content">
             <p>Write a function <code>getMovieList</code> which takes a single parameter:
-                <p>
-                    <ul>
-                        <li><code>year: int</code> - the year number you need data for</li>
-                    </ul>
-                    <p>The function should return:
-                        <p>
-                            <ul>
-                                <li>A Promise that resolves with an array of titles (only) for the year, sorted alphabetically.</li>
-                                <li>If there are no results for that year, it resolves with an empty array.</li>
-                                <li>Only the first (default) page of data is required.</li>
-                            </ul>
+            <p>
+            <ul>
+                <li><code>year: int</code> - the year number you need data for</li>
+            </ul>
+            <p>The function should return:
+            <p>
+            <ul>
+                <li>A Promise that resolves with an array of titles (only) for the year, sorted alphabetically.</li>
+                <li>If there are no results for that year, it resolves with an empty array.</li>
+                <li>Only the first (default) page of data is required.</li>
+            </ul>
         </div>
 
         <h3 class="title is-4">Tests</h3>
