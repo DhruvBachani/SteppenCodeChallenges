@@ -6,9 +6,7 @@ export const TwoPaneList = ({ data }) => {
 
 
   const [selectedIndex, setSelectedIndex] = useState(null)
-  const allTitles = useMemo(() => {
-    return data.map((x) => x.title)
-  }, [data])
+  const allTitles = useMemo(() => data.map((x) => x.title), [data])
 
 
   return <div className='columns'>
