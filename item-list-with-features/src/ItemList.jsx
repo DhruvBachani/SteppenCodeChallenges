@@ -1,50 +1,48 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import ItemRow from "./ItemRow";
 
 export const ItemList = ({ data }) => {
-  const [item, setItem] = useState({ id: 0, value: '' })
+  const [item, setItem] = useState('')
   const [items, setItems] = useState(() => {
     if (data) return data
     else return []
   })
 
-
   const addItem = () => {
-    if (item.value === "") {
+    if (item === "") {
       alert("Empty value not accepted.")
     }
     else {
       setItems([...items, item])
-      setItem({ id: item.id + 1, value: '' })
+      setItem('')
     }
   }
 
-  const deleteItem = (id) => {
+  const deleteItem = useCallback((index) => {
+    setItems(prevItems => {
+      let tempItems = prevItems.slice()
+      tempItems.splice(index, 1)
+      return tempItems
+    })
+  }, [])
 
-    const tempItems = items.filter(item => item.id !== id)
-    setItems(tempItems)
-  }
-
-  const editItem = (id, newValue) => {
+  const editItem = useCallback((index, newValue) => {
     if (newValue === "") {
       alert("Empty value not accepted.")
     }
     else {
       const tempItems = items.slice()
-      tempItems.forEach((i) => {
-        if (i.id === id) i.value = newValue
-      })
+      tempItems[index] = newValue
       setItems(tempItems)
     }
-
-  }
+  }, [items])
   return <div>
 
-    {items.map((item) => {
-      return <ItemRow key={item.id} item={item} onDelete={(index) => deleteItem(index)} onEdit={(index, newValue) => editItem(index, newValue)} />
+    {items.map((item, i) => {
+      return <ItemRow key={i} item={item} onDelete={deleteItem} onEdit={editItem} index={i} />
     })}
     <div className="columns">
-      <input type='text' className="input column is-three-quarters" value={item.value} onChange={e => setItem({ id: item.id, value: e.target.value })} />
+      <input type='text' className="input column is-three-quarters" value={item} onChange={e => setItem(e.target.value)} />
       <button type='submit' className="button is-primary column" onClick={() => addItem()} > + </button>
     </div>
 
